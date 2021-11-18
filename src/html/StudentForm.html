@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SB Admin 2 - Tables</title>
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+  <!-- Main Content -->
+  <div id="content">
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+      
+      <!-- DataTales Example -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Registeration Form</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+
+            <!-- Nested Row within Card Body -->
+            <div>
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Student Registeration</h1>
+                </div>
+                <form class="user" name='studentForm'>
+
+                  <div class="form-group was-validated row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label>First name:  </label>
+                      <input type="text" name='fname' id='fname' ng-model="fname" class="form-control form-control-user"
+                        placeholder="First Name" required />
+                      <div ng-show="studentForm.fname.$touched && studentForm.lname.$invalid" style="color: red">Please
+                        Fill The FirstName</div>
+
+                    </div>
+                    <div class="col-sm-6">
+                      <label>Last name:</label>
+                      <input type="text" name='lname' ng-model="lname" class="form-control form-control-user"
+                        placeholder="Last Name" required />
+                      <div ng-show="studentForm.lname.$touched && studentForm.lname.$invalid" style="color: red">Please
+                        Fill The LastName</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label>Class:</label>
+                      <select name='class' ng-model="class" ng-options="x for x in classes"
+                         class="form-control btn btn-light dropdown-toggle"
+                        required>
+                      <option value="">Select Class</option></select>
+                      <div ng-show="studentForm.class.$touched && studentForm.class.$invalid " style="color: red;">Please
+                        Select one Option</div>
+                    </div>
+                    <div class="col-sm-6">
+                      <label>Section:</label>
+                      <select name='section' ng-hide="studentForm.class.$invalid" ng-model="section"
+                        ng-options="y for y in sec" class="form-control btn btn-light dropdown-toggle"
+                        required></select>
+                        <div ng-show="studentForm.section.$touched && studentForm.section.$invalid " style="color: red;">Please
+                          Select one Option</div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Subject:</label>
+                    <select name='sname' ng-model="sname" ng-options="x for x in schoolname" 
+                      class="form-control btn btn-light dropdown-toggle"required>
+                      <option value="">Select School</option>
+                    </select>
+                    <p ng-show="studentForm.snames.$touched && studentForm.snames.$invalid " style="color: red;">Please
+                      Select one Option</p>
+                  </div>
+                  <div class="form-group">
+                  <input type="submit" value="Add" class="btn btn-success" ng-disabled="studentForm.$invalid"
+                    ng-click='addArr()'>
+                    <p id="savednotif" style="color:green;"></p>
+                    </div>
+
+
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          
+             
+             ng-show="studentForm.lname.$touched && studentForm.lname.$invalid">Last Name Required
+             ng-show="studentForm.State.$touched && studentForm.State.$invalid">Please Enter State
+             ng-show="studentForm.City.$touched && studentForm.City.$invalid">Please Enter City
+             ng-show="studentForm.sname.$touched && studentForm.sname.$invalid">Office Name Required
+                  <input type="submit" value="Add" ng-disabled="studentForm.$invalid" ng-click='addArr()' />
+            
+  
+          </table> -->
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <!-- End of Main Content -->
+</body>
