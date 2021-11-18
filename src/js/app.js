@@ -3,78 +3,45 @@
 var app = angular.module('myApp', ["ngRoute", 'ui.router']);
 
 app.run(function ($rootScope, $location, $state, LoginService) {
-  console.clear();
-  console.log('running');
-  if (!LoginService.isAuthenticated()) {
+  $rootScope.isAuth = false;
+});
+
+
+app.factory('LoginService', ['$http', 
+  function($http,$rootScope) { 
+    var service = { 
+      'login': function(data) { 
+        $http({ 
+          url: constants.BACKENDAPI + "/api/login", 
+          method: 'POST', 
+          data: data, 
+        }).then(function(data) { 
+          localStorage.setItem('APP-token', data.token); 
+          $rootScope.isAuth = true;
+        }).catch(function(data) { 
+         $state.transitionTo('login');
+        $rootScope.isAuth = false;
+          console.log('error in login'); 
+        }); 
+      }, 
+      logout: function() { 
+        localStorage.removeItem('APP-token'); 
+        $rootScope.isAuth = false;
+      } 
+    }; 
+    return service; 
+  } 
+]); 
+
+app.controller('SessionCtrl', ['SessionService', function(SessionService,$rootScope) { 
+  var self = this; 
+  self.login() = function(data) { 
+    SessionService.login(); 
+  } 
+  if (!$rootScope.isAuth) {
     $state.transitionTo('login');
   }
-});
-
-
-app.factory('LoginService', function ($scope) {
-  var admin = 'admin';
-  var pass = 'password';
-  var isAuthenticated = false;
-
-  return {
-    login: function (username, password) {
-      isAuthenticated = username === admin && password === pass;
-      $scope.topbar=" "
-      return isAuthenticated;
-    },
-    isAuthenticated: function () {
-      return isAuthenticated;
-    }
-  };
-
-});
-
-app.config(['$stateProvider', '$urlRouterProvider',
-  function ($stateProvider, $urlRouterProvider) {
-    $stateProvider
-      .state('login', {
-        url: '/login',
-        templateUrl: 'login.html',
-        controller: 'LoginController'
-      })
-      .state('home', {
-        url: '/home',
-        templateUrl: 'home.html',
-        controller: 'HomeController'
-      })
-        .state("/404s", {
-        templateUrl: "404.html",
-        controller: "headContr"
-      })
-
-    .state("/Mains", {
-      templateUrl: "home.html",
-      controller: "homeController"
-    })
-
-    .state("/Student", {
-      templateUrl: "StudentForm.html",
-      controller: "StudentCntrl"
-    })
-    .state("/Teacher", {
-      templateUrl: "TeacherForm.html",
-      controller: "TeacherCntrl"
-    })
-
-    .state("/Studenttabuls", {
-      templateUrl: "StudentTables.html",
-      controller: "StudentCntrl"
-    })
-
-    .state("/Teachtabuls", {
-      templateUrl: "Teachertables.html",
-      controller: "TeacherCntrl"
-    });
-        
-         $urlRouterProvider.otherwise('/login');
-    }]);
-  
-
+}]); 
 
 
 app.run(function ($rootScope, $http,) {
@@ -190,6 +157,7 @@ app.run(function ($rootScope, $http,) {
   $rootScope.studentGetDATA()
 
 });
+
 
 
 

@@ -12,33 +12,35 @@
   <title>School Management</title>
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="src/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="src/vendor/jquery/jquery.min.js"></script>
+  <script src="src/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="src/js/min/sb-admin-2.min.js"></script>
   <!-- Page level plugins -->
-  <script src="vendor/charts/graph.min.js"></script>
+  <script src="src/vendor/charts/graph.min.js"></script>
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-  <script type="text/javascript" src="js/demo/chart-pie-demo.js"></script>
+  <script type="text/javascript" src="src/js/min/demo/chart-pie-demo.js"></script>
   <!-- Page level custom scripts -->
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="src/css/sb-admin-2.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
-  <script src="module.js"></script>
-  <script src="headerController.js"></script>
-  <script src="homeController.js"></script>
-  <script src="TeacherController.js"></script>
-  <script src="StudentController.js"></script>
-  <script src="loginController.js"></script>
+  <script src="src/js/route.js"></script>
+  <script src="src/js/headerController.js"></script>
+  <script src="src/js/homeController.js"></script>
+  <script src="src/js/TeacherController.js"></script>
+  <script src="src/js/StudentController.js"></script>
+  <script src="src/js/loginController.js"></script>
+  <script src="constants.js"></script>
+
 
 
 
@@ -50,7 +52,7 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <div data-ng-include="'header.html'"></div>
+    <div data-ng-include="'src/html/header.html'" ng-show="isAuth"></div>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -58,7 +60,7 @@
       <div id="content">
 
         <!-- Topbar -->
-        <nav ng-model="topbar" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <nav ng-model="topbar" ng-show="isAuth" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -118,17 +120,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-
           <div ng-view></div>
-
-
-
-
-
-
-
-
-
 
         </div>
         <!-- /.container-fluid -->

@@ -4,47 +4,43 @@ var app = angular.module("myApp", ["ngRoute"]);
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/Logins", {
-            templateUrl: "login.html",
+            templateUrl: "src/html/login.html",
             controller: "LoginController"
         })
         .when("/ForgotPassword", {
-            templateUrl: "forgot-password.html",
+            templateUrl: "src/html/forgot-password.html",
             controller: "LoginController"
         })
         .when("/Registers", {
-            templateUrl: "register.html",
+            templateUrl: "src/html/register.html",
             controller: "LoginController"
         })
-        .when("/index", {
-            templateUrl: "index.html",
-            controller: "headContr"
-        })
         .when("/404s", {
-            templateUrl: "404.html",
+            templateUrl: "src/html/404.html",
             controller: "headContr"
         })
 
         .when("/Mains", {
-            templateUrl: "home.html",
+            templateUrl: "src/html/home.html",
             controller: "homeController"
         })
 
         .when("/Student", {
-            templateUrl: "StudentForm.html",
+            templateUrl: "src/html/StudentForm.html",
             controller: "StudentCntrl"
         })
         .when("/Teacher", {
-            templateUrl: "TeacherForm.html",
+            templateUrl: "src/html/TeacherForm.html",
             controller: "TeacherCntrl"
         })
 
         .when("/Studenttabuls", {
-            templateUrl: "StudentTables.html",
+            templateUrl: "src/html/StudentTables.html",
             controller: "StudentCntrl"
         })
 
         .when("/Teachtabuls", {
-            templateUrl: "Teachertables.html",
+            templateUrl: "src/html/Teachertables.html",
             controller: "TeacherCntrl"
         })
 

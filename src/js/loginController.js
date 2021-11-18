@@ -9,6 +9,7 @@ app.controller('LoginController', function ($scope, $location, $rootScope, Login
             $scope.username = '';
             $scope.password = '';
             $location.path('Mains');
+            $rootScope.isAuth= true;
         } else {
             $scope.error = "Incorrect username/password !";
         }
